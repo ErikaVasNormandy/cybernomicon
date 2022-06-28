@@ -1,4 +1,4 @@
-# *Cybernomicon*
+# Cybernomicon
 
 **Bits and Pieces**
 
