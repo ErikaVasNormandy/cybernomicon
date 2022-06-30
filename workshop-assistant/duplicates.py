@@ -8,7 +8,23 @@ def checkFileSizes(fileA, fileB):
     print(os.stat(fileA))
     print(os.stat(fileB))
     
-    
+def checkForDuplicatesInOneFile(arrayInput):
+    counter = 0
+    counterb = 0
+
+    listofdupes = []
+    for i in range(counter, len(arrayInput), 1):
+        # print("i is %s" % (i))
+        # print("counter i is %s" % (arrayInput[i]))
+        for j in range(counterb, len(arrayInput), 1):
+            # print("j is %s" % (j))
+            # print("counter j is %s" % (arrayInput[j]))
+            if (arrayInput[i] == arrayInput[j] and i != j):
+                listofdupes.append(arrayInput[i])
+
+    # print("check work")
+    return(listofdupes)
+
 
 
 def main():
