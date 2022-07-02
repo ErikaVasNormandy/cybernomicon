@@ -82,34 +82,36 @@ def main():
 
 
 
-
+        f.close()
 
 
 #https://stackoverflow.com/questions/3951547/java-array-finding-duplicates
         listofdupes=[]
-        counterb=counter+1
-        i=0
-        j=0
-
-        for i in range(counter, len(stringarrayexample), 1):
-            print("i is %s" % (i))
-#            print("counter is %s" % (counter))
-#            print("counter index is %s" % (stringarrayexample[counter]))
-            print("counter i is %s" % (stringarrayexample[i]))
-#            counter+=1
-            for j in range(counterb, len(stringarrayexample), 1):
-                print("j is %s" % (j))
-#                print("counterb is %s" % (counterb))
-#                print("counter index value is %s" % stringarrayexample[counterb] )
-                print("counter j is %s" % (stringarrayexample[j]))
-                if(stringarrayexample[i]==stringarrayexample[j] and i!=j):
-                    print("DUPLICATE FOUND!!!!!!!!!!!!!!!!!!!!!! at this value %s" % stringarrayexample[i] )
-                    listofdupes.append(stringarrayexample[i])
-#                if(stringarrayexample[counter]==stringarrayexample[counterb]):
-#                    print("duplicate found")
-#                    counter+=1
-            print("check work")
-            print(listofdupes)
+        listofdupes= checkForDuplicatesInOneFile(lines)
+        print(listofdupes)
+#        counterb=counter+1
+#        i=0
+#        j=0
+#
+#        for i in range(counter, len(stringarrayexample), 1):
+#            print("i is %s" % (i))
+##            print("counter is %s" % (counter))
+##            print("counter index is %s" % (stringarrayexample[counter]))
+#            print("counter i is %s" % (stringarrayexample[i]))
+##            counter+=1
+#            for j in range(counterb, len(stringarrayexample), 1):
+#                print("j is %s" % (j))
+##                print("counterb is %s" % (counterb))
+##                print("counter index value is %s" % stringarrayexample[counterb] )
+#                print("counter j is %s" % (stringarrayexample[j]))
+#                if(stringarrayexample[i]==stringarrayexample[j] and i!=j):
+#                    print("DUPLICATE FOUND!!!!!!!!!!!!!!!!!!!!!! at this value %s" % stringarrayexample[i] )
+#                    listofdupes.append(stringarrayexample[i])
+##                if(stringarrayexample[counter]==stringarrayexample[counterb]):
+##                    print("duplicate found")
+##                    counter+=1
+#            print("check work")
+#            print(listofdupes)
 #
 #        for i in range(len(stringarrayexample)):
 #            print(i)
@@ -117,7 +119,7 @@ def main():
             #print(stringarrayexample[])
             
             
-        f.close()
+       # f.close()
 
 
 
