@@ -122,8 +122,6 @@ def convertPoundsToGrams(poundsInput, typeInput):
 
 
 def main():
-
-
 	try:
 		while True:
 			print("\n----------------------\nPrice Calculator\n----------------------\n")
