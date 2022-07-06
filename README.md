@@ -10,7 +10,6 @@ A note to your future self should you forget.
 
 ## Preview
 
-https://gatsby-dimension.surge.sh/
 
 ## Installation
 
