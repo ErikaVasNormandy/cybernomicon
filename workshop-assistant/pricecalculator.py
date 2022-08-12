@@ -20,6 +20,9 @@ def convertPoundsToCups(poundsInput, typeInput):
 		#print("8 oz weight of oats is 2.5 cups, measured this actually. Also 2.625 pounds is apparently 13.125 cups")
 		#oats
 		typeOutput=5.04
+	if(typeInput==4):
+		#sugar
+		typeOutput=5.1
 	cups = float(poundsInput) * typeOutput
 	return cups;
 
@@ -119,50 +122,152 @@ def convertPoundsToGrams(poundsInput, typeInput):
 	grams = poundsInput*typeOutput
 	return grams
 
+def simpleEggMath(packagetype, cost):
+	return cost / packagetype
+	#return cost * howManyEggs / packagetype
+
+def butterAndMargarine(typeInput, amountused, packageAmount, inputPrice):
+	print("\nRemember:: \n1 Stick of butter/margarine == 8 tbsps \n1 Stick of butter == 1/2 a cup\n ")
+	if(typeInput=='1'):
+		#sticks
+		conversionFactor = inputPrice/packageAmount
+		print("\n%.4f per individual stick at %s dollars\n" % (conversionFactor, inputPrice ))
+		print("%.2f for this recipe if it called for %s sticks of butter and you bought it at %s" % (conversionFactor*amountused , amountused, inputPrice))
+		if(typeInput=='2'):
+		#cups
+		conversionFactor = inputPrice/packageAmount
+		print("\n%.4f per individual stick at %s dollars\n" % (conversionFactor, inputPrice ))
+		print("%.2f for this recipe if it called for %s sticks of butter and you bought it at %s" % (conversionFactor*amountused , amountused, inputPrice))
+	#return tablespoons, sticks, and cups, and ounces
+	
+	#the problem with these is that the price varies
+	# #tablespoons
+	# print("%s Tablespoons would be %.2f per tablespoon" % (inputHowMuchObtained, inputHowMuchObtained/inputPrice))
+	# print("%s Sticks would be %.2f per stick" % (inputHowMuchObtained, inputHowMuchObtained/inputPrice))
+
+
 
 
 def main():
+	itemDictionary = {
+		1: "Flour",
+		2: "Rice",
+		3: "Oats",
+		4: "Sugar",
+		5: "Pasta",
+		6: "Lentils",
+		7: "Milk",
+		8: "Eggs",
+		9: "Butter",
+		10: "Margarine"
+	}
+
 	try:
 		while True:
-			print("\n----------------------\nPrice Calculator\n----------------------\n")
+			print("\n------------------------------------------------------------------\n\033[96m BASIC PRICE CALCULATOR\033[0m \n------------------------------------------------------------------\n")
 
-
+######################################
 			# 1. Choose Bulk Item
-			bulkInput=input("\nMake a selection below [enter]:\nProgram will default to [1] Flour if none are chosen\n[1] Flour\n[2] Rice\n[3] Oats\n[4] Milk\n\n")
-			bulkInput=int(bulkInput)
-			itemDictionary = {
-				1: "Flour",
-				2: "Rice",
-				3: "Oats",
-				4: "Milk",
-				5: "Pasta",
-				6: "Lentils"
-			}
+######################################
 
+			bulkInput=input("Make a selection below [enter]:\nProgram will default to [1] Flour if none are chosen\n\n[1] Flour\n[2] Rice\n[3] Oats\n[4] Sugar\n[5] Pasta\n[6] Lentils\n[7] Milk\n[8] Eggs \n[9] Butter\n[10] Margarine\n\n")
+			bulkInput=int(bulkInput)
+
+	
 			print("\nYou Chose [%s], aka %s. Keep in mind that these are approximate measurements only" % (bulkInput, itemDictionary[bulkInput]))
 
+######################################
+			# 2. Prompt user for How Many Cups
+######################################
+			# returns string or None without the int() function
 
-			# 2. Prompt user for how many cups
-				# returns string or None without the int() function
-			dialogBoxInput=''
-			while(dialogBoxInput==''):
-				dialogBoxInput=input('\nHow many cups of %s are required?\n' % itemDictionary[bulkInput])
-				#if(dialogBoxInputpyautogui.alert("Please enter a number")
-			dialogBoxInput=int(dialogBoxInput)
+######################################
+			# 2.5 Handle Special Cases like eggs and butter
+######################################
 
-			# 3. Calculate
-			print("\n------------------------Volume------------------------\n")
-			print("%s cup(s) of %s would be \n\t\033[96m %s dollars \033[0m " % (dialogBoxInput, itemDictionary[bulkInput], convertCupsToDollars(dialogBoxInput, bulkInput)));
-			print("\t\033[96m %s pounds \033[0m" % (convertCupsToPounds(dialogBoxInput, bulkInput))); 
-			print("\t\033[96m %s grams \033[0m " % (convertCupsToGrams(dialogBoxInput, bulkInput)))
+			if(itemDictionary[bulkInput])=="Eggs":
+				print("For example, if a dozen pack of eggs is 2.99, one egg is going to be roughly 3 / dozen == 3 / 12 == $0.25 an egg")
+
+				#call function for eggs
+				eggPackageCount=''
+				while(eggPackageCount==''):
+					eggPackageCount=input("Did you buy a dozen? The 18-pack?\n")
+				eggPackageCount=int(eggPackageCount)
+
+				# howManyEggs=''
+				# while(howManyEggs==''):
+				# 	howManyEggs=input("How many eggs are you using?")
+				# howManyEggs=int(howManyEggs)
+
+				eggprice=''
+				while(eggprice==''):
+					eggprice=input("How much did you pay?\n")
+				eggprice=float(eggprice)
+
+				print("\nA %s pack of eggs at %s would be \n\033[96m %.2f \033[0m per egg\n" % (eggPackageCount, eggprice,  simpleEggMath(eggPackageCount, eggprice)))
+
+			elif(itemDictionary[bulkInput])=="Butter":
+#def butterAndMargarine(amountused, packageAmount, inputPrice):
+				measurementType=input("Sticks? Cups? Tablespoons? \n1) Sticks \n2) Cups\n3) Tablepoons\n\n")
+
+				
+				butterUsedInput=''
+				while(butterUsedInput==''):
+					butterUsedInput=input("Amount Used?\n")
+				butterUsedInput=int(butterUsedInput)
+
+				butterprice=''
+				while(butterprice==''):
+					butterprice=input("How much did you pay?\n")
+				butterprice=float(butterprice)
+
+				packageInput=''
+				while(packageInput==''):
+					packageInput=input("Quantity of the package?\n")
+				packageInput=int(packageInput)
+
+	
+
+				butterAndMargarine(measurementType, butterUsedInput, packageInput, butterprice)
 
 
-			print("\n------------------------Mass------------------------\n")
-			print("%s pound(s) of %s would be \n\t\033[96m %s dollars \033[0m " % (dialogBoxInput, itemDictionary[bulkInput], convertPoundsToDollars(dialogBoxInput, bulkInput)));
-			print("\t\033[96m %s cups \033[0m" % (convertPoundsToCups(dialogBoxInput, bulkInput)));
 
-			print("\n\n----------------------start over----------------------\n")
-			
+			elif(itemDictionary[bulkInput])=="Margarine":
+				print("For example, if a dozen pack of eggs is 2.99, one egg is going to be roughly 3 / dozen == 3 / 12 == $0.25 an egg")
+
+				#call function for eggs
+				eggPackageCount=''
+				while(eggPackageCount==''):
+					eggPackageCount=input("Did you buy a dozen? The 18-pack?\n")
+				eggPackageCount=int(eggPackageCount)
+
+				eggprice=''
+				while(eggprice==''):
+					eggprice=input("How much did you pay?\n")
+				eggprice=float(eggprice)
+
+				butterAndMargarine(butterInput, butterprice)
+
+
+######################################
+			# 3. Calculate conventional bulk prices
+######################################
+			else:
+				dialogBoxInput=''
+				while(dialogBoxInput==''):
+					dialogBoxInput=input('\nHow many cups of %s are required?\n' % itemDictionary[bulkInput])
+					#if(dialogBoxInputpyautogui.alert("Please enter a number")
+				dialogBoxInput=int(dialogBoxInput)
+
+				print("\n------------------------------------------------------------------\nVolume\n------------------------------------------------------------------\n")
+				print("%s cup(s) of %s would be \n\t\033[96m %.2f dollars \033[0m " % (dialogBoxInput, itemDictionary[bulkInput], convertCupsToDollars(dialogBoxInput, bulkInput)));
+				print("\t\033[96m %.3f pounds \033[0m" % (convertCupsToPounds(dialogBoxInput, bulkInput))); 
+				print("\t\033[96m %s grams \033[0m " % (convertCupsToGrams(dialogBoxInput, bulkInput)))
+
+				print("\n------------------------------------------------------------------\nMass\n------------------------------------------------------------------\n")
+				print("%s pound(s) of %s would be \n\t\033[96m %s dollars \033[0m " % (dialogBoxInput, itemDictionary[bulkInput], convertPoundsToDollars(dialogBoxInput, bulkInput)));
+				print("\t\033[96m %s cups \033[0m" % (convertPoundsToCups(dialogBoxInput, bulkInput)));
+                
 	except KeyboardInterrupt:
 		print('\n\tinterrupted!\t\n')
 
