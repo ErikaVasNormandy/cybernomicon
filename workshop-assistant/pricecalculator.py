@@ -126,25 +126,27 @@ def simpleEggMath(packagetype, cost):
 	return cost / packagetype
 	#return cost * howManyEggs / packagetype
 
-def butterAndMargarine(typeInput, amountused, packageAmount, inputPrice):
-	print("\nRemember:: \n1 Stick of butter/margarine == 8 tbsps \n1 Stick of butter == 1/2 a cup\n ")
-	if(typeInput=='1'):
-		#sticks
-		conversionFactor = inputPrice/packageAmount
-		print("\n%.4f per individual stick at %s dollars\n" % (conversionFactor, inputPrice ))
-		print("%.2f for this recipe if it called for %s sticks of butter and you bought it at %s" % (conversionFactor*amountused , amountused, inputPrice))
-		if(typeInput=='2'):
-		#cups
-		conversionFactor = inputPrice/packageAmount
-		print("\n%.4f per individual stick at %s dollars\n" % (conversionFactor, inputPrice ))
-		print("%.2f for this recipe if it called for %s sticks of butter and you bought it at %s" % (conversionFactor*amountused , amountused, inputPrice))
-	#return tablespoons, sticks, and cups, and ounces
-	
-	#the problem with these is that the price varies
-	# #tablespoons
-	# print("%s Tablespoons would be %.2f per tablespoon" % (inputHowMuchObtained, inputHowMuchObtained/inputPrice))
-	# print("%s Sticks would be %.2f per stick" % (inputHowMuchObtained, inputHowMuchObtained/inputPrice))
+def butterAndMargarine(butterUsedInput, packageAmount, butterprice):
+	unitOfConversion = butterprice/packageAmount
+	print("\n\033[96m%.2f\033[0m per individual stick of butter, (\033[96m%.2f \033[0m per tablespoon)" % (unitOfConversion, unitOfConversion/8))
+	totalcost = unitOfConversion*butterUsedInput
+	return(totalcost)
 
+
+
+# def butterAndMargarine(typeInput, amountused, packageAmount, inputPrice):
+# 	print("\nRemember:: \n1 Stick of butter/margarine == 8 tbsps \n1 Stick of butter == 1/2 a cup\n ")
+# 	if(typeInput=='1'):
+# 		#sticks
+# 		conversionFactor = inputPrice/packageAmount
+# 		print("\n%.4f per individual stick at %s dollars\n" % (conversionFactor, inputPrice ))
+# 		print("%.2f for this recipe if it called for %s sticks of butter and you bought it at %s" % (conversionFactor*amountused , amountused, inputPrice))
+# 		if(typeInput=='2'):
+# 		#cups
+# 		conversionFactor = inputPrice/packageAmount
+# 		print("\n%.4f per individual stick at %s dollars\n" % (conversionFactor, inputPrice ))
+# 		print("%.2f for this recipe if it called for %s sticks of butter and you bought it at %s" % (conversionFactor*amountused , amountused, inputPrice))
+	
 
 
 
@@ -159,7 +161,6 @@ def main():
 		7: "Milk",
 		8: "Eggs",
 		9: "Butter",
-		10: "Margarine"
 	}
 
 	try:
@@ -170,7 +171,7 @@ def main():
 			# 1. Choose Bulk Item
 ######################################
 
-			bulkInput=input("Make a selection below [enter]:\nProgram will default to [1] Flour if none are chosen\n\n[1] Flour\n[2] Rice\n[3] Oats\n[4] Sugar\n[5] Pasta\n[6] Lentils\n[7] Milk\n[8] Eggs \n[9] Butter\n[10] Margarine\n\n")
+			bulkInput=input("Make a selection below [enter]:\nProgram will default to [1] Flour if none are chosen\n\n[1] Flour\n[2] Rice\n[3] Oats\n[4] Sugar\n[5] Pasta\n[6] Lentils\n[7] Milk\n[8] Eggs \n[9] Butter\n\n")
 			bulkInput=int(bulkInput)
 
 	
@@ -204,16 +205,17 @@ def main():
 					eggprice=input("How much did you pay?\n")
 				eggprice=float(eggprice)
 
-				print("\nA %s pack of eggs at %s would be \n\033[96m %.2f \033[0m per egg\n" % (eggPackageCount, eggprice,  simpleEggMath(eggPackageCount, eggprice)))
+				eggCostUnit = simpleEggMath(eggPackageCount, eggprice)
+
+				print("\nA %s pack of eggs at \033[96m%s\033[0m would be\033[96m %.2f\033[0m per egg\n" % (eggPackageCount, eggprice,  eggCostUnit))
+				print("For example, \n2 eggs --> \033[96m$%.2f\033[0m \n4 eggs --> \033[96m$%.2f\033[0m \n8 eggs --> \033[96m$%.2f\033[0m\n" % (eggCostUnit*2, eggCostUnit*4, eggCostUnit*8))
 
 			elif(itemDictionary[bulkInput])=="Butter":
 #def butterAndMargarine(amountused, packageAmount, inputPrice):
-				measurementType=input("Sticks? Cups? Tablespoons? \n1) Sticks \n2) Cups\n3) Tablepoons\n\n")
-
-				
+				# measurementType=input("Sticks? Cups? Tablespoons? \n1) Sticks \n2) Cups\n3) Tablepoons\n\n")
 				butterUsedInput=''
 				while(butterUsedInput==''):
-					butterUsedInput=input("Amount Used?\n")
+					butterUsedInput=input("Sticks Used? (8 tbsps in a stick)\n")
 				butterUsedInput=int(butterUsedInput)
 
 				butterprice=''
@@ -221,32 +223,34 @@ def main():
 					butterprice=input("How much did you pay?\n")
 				butterprice=float(butterprice)
 
-				packageInput=''
-				while(packageInput==''):
-					packageInput=input("Quantity of the package?\n")
-				packageInput=int(packageInput)
+				packageAmount=''
+				while(packageAmount==''):
+					packageAmount=input("Quantity of the package?\n")
+				packageAmount=int(packageAmount)
 
-	
+				cost = butterAndMargarine(butterUsedInput, packageAmount, butterprice)
+				print("\nUsing \033[96m%s stick(s) (8 tbsps)\033[0m of butter, at \033[96m%.2f\033[0m for a \033[96m%s stick\033[0m container\n" % (butterUsedInput, butterprice, packageAmount) )
+				print("It would cost you \033[96%s\033[0m total" % (butterAndMargarine(butterUsedInput, packageAmount, butterprice)))
 
-				butterAndMargarine(measurementType, butterUsedInput, packageInput, butterprice)
+				# butterAndMargarine(measurementType, butterUsedInput, packageInput, butterprice)
 
 
 
-			elif(itemDictionary[bulkInput])=="Margarine":
-				print("For example, if a dozen pack of eggs is 2.99, one egg is going to be roughly 3 / dozen == 3 / 12 == $0.25 an egg")
+			# elif(itemDictionary[bulkInput])=="Margarine":
+			# 	print("For example, if a dozen pack of eggs is 2.99, one egg is going to be roughly 3 / dozen == 3 / 12 == $0.25 an egg")
 
-				#call function for eggs
-				eggPackageCount=''
-				while(eggPackageCount==''):
-					eggPackageCount=input("Did you buy a dozen? The 18-pack?\n")
-				eggPackageCount=int(eggPackageCount)
+			# 	#call function for eggs
+			# 	eggPackageCount=''
+			# 	while(eggPackageCount==''):
+			# 		eggPackageCount=input("Did you buy a dozen? The 18-pack?\n")
+			# 	eggPackageCount=int(eggPackageCount)
 
-				eggprice=''
-				while(eggprice==''):
-					eggprice=input("How much did you pay?\n")
-				eggprice=float(eggprice)
+			# 	eggprice=''
+			# 	while(eggprice==''):
+			# 		eggprice=input("How much did you pay?\n")
+			# 	eggprice=float(eggprice)
 
-				butterAndMargarine(butterInput, butterprice)
+			# 	butterAndMargarine(butterInput, butterprice)
 
 
 ######################################

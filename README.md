@@ -8,8 +8,8 @@ Simple Scripts, Exploits, SDR, Full Stack, DevOps...
 
 A note to your future self should you forget.
 
-## Preview
+## How to Use This Book
 
 
-## Installation
+
 
