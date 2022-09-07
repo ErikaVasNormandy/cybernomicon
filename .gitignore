@@ -5,6 +5,8 @@ yarn-error.log
 localtestdata
 .env
 
+
+/lib
 config.ini
 
 # Build directory
