@@ -4,8 +4,8 @@ import time
 print("Hello Scheduler")
 def job():
     print("I'm working...")
-
-schedule.every(10).minutes.do(job)
+#I think this just does local time for me..... Pacific time so whatever
+schedule.every(1).minutes.do(job)
 schedule.every().hour.do(job)
 schedule.every().day.at("17:36").do(job)
 
