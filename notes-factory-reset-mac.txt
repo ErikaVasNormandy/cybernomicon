@@ -1,0 +1,24 @@
+
+
+https://www.cnet.com/tech/computing/how-to-factory-reset-macbook/
+n order to erase all of your data and reinstall MacOS. To enter Recovery Mode on an Intel-based Mac, restart it and immediately press and hold Command-R. You can release the keys once you see the Apple logo. 
+
+## Intel
+Turn on your MAC and immediately press and hold Command R
+https://support.apple.com/en-us/HT204904
+ 
+
+## error -1007F
+
+If you haven't already, zap the PRAM. Restart your Mac while holding down the P + R + CMD + Option keys, and after you hear the machine boot-up chimes 3 separate times, let go of the keys. Then restart and try the Internet Recovery Mode again and you should get past the error and be fine. It worked like a charm for me.
+https://discussions.apple.com/thread/251056369
+
+
+https://discussions.apple.com/thread/8044169
+
+## Not detecting a Disk
+Go to Disk Utility  > Choose the Journaled Section > Erase Partition
+return to the disk setup
+
+
+
